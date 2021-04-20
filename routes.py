@@ -48,8 +48,12 @@ def login():
                 session['email'] = user.email
                 session['username'] = user.name
                 return redirect(url_for('index_page'))
-            else: # если пользователя нет или пароль неправильный
+            else:  # если пользователя нет или пароль неправильный
                 return redirect(url_for('login'))
     return render_template('login.html', form=form)
 
 
+@app.route('/logout/')
+def logout():
+    session['logged_in'] = False
+    return redirect(url_for('index_page'))
